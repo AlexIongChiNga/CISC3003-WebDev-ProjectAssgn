@@ -1,0 +1,46 @@
+@startuml
+' Define User class
+class User {
+    + userID: INT
+    + username: VARCHAR(50)
+    + password: VARCHAR(255)
+    + emailAddress: VARCHAR(100)
+}
+
+' Define Product class
+class Product {
+    + productID: INT
+    + description: TEXT
+    + price: DECIMAL(10, 2)
+    + postDate: TIMESTAMP
+    + quantity: INT
+    + sellerID: INT
+}
+
+' Define Transaction class
+class Transaction {
+    + transactionID: INT
+    + buyerID: INT
+    + productID: INT
+    + totalFee: DECIMAL(10, 2)
+    + paymentMethod: VARCHAR(50)
+    + shipmentStatus: VARCHAR(50)
+}
+
+' Define Review class
+class Review {
+    + reviewID: INT
+    + productID: INT
+    + userID: INT
+    + rating: INT        ' Rating (e.g., 1-5 stars)
+    + comment: TEXT      ' Text review by the user
+    + reviewDate: TIMESTAMP
+}
+
+' Relationships
+User "1" --> "many" Product : sells
+Product "1" --> "many" Transaction : sold in
+Transaction --> User : buyerID
+User "1" --> "many" Review : writes
+Product "1" --> "many" Review : has
+@enduml

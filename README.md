@@ -9,7 +9,8 @@ my_project/
 ├── includes/          # Reusable PHP files (e.g., header.php, footer.php)
 ├── pages/             # Additional pages (e.g., about.php, contact.php)
 ├── config/            # Configuration files (e.g., database.php)
-└── database/          # Database-related scripts or backups
+├── database/          # Database-related scripts or backups
+└── utils/             # Misc items used in the project
 ```
 
 ## PowerPoint
