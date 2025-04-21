@@ -8,7 +8,7 @@ $user_data = check_login($con);
 $featured_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 8";
 $featured_result = $con->query($featured_query);
 
-$more_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 12 OFFSET 8";
+$more_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 8 OFFSET 8";
 $more_result = $con->query($more_query);
 
 ?>
@@ -97,7 +97,7 @@ $more_result = $con->query($more_query);
         if ($more_result->num_rows > 0) {
             while ($product = $more_result->fetch_assoc()) {
                 echo '<div class="col-4">';
-                echo '<a href="productDetails.php?id=' . $product['product_id'] . '">';
+                echo '<a href="productDetails.php?product_id=' . $product['product_id'] . '">';
                 echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" />';
                 echo '<div class="rating">';
                 for ($i = 0; $i < 5; $i++) {

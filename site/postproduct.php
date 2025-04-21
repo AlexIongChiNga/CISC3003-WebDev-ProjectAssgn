@@ -1,15 +1,34 @@
 <?php
 session_start();
+
 include("function.php");
 include("connection.php");
 $user_data = check_login($con);
+$user_id = $user_data['user_id'];
 
-$featured_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 8";
-$featured_result = $con->query($featured_query);
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Get form data
+    $name = $_POST['name'];
+    $image = $_POST['image'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
 
-$more_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 12 OFFSET 8";
-$more_result = $con->query($more_query);
+    // Validate inputs
+    if (!empty($name) && !empty($image) && !empty($price) && !empty($description)) {
+        // Insert product into the database
+        $query = "INSERT INTO products (user_id, name, image, price, description) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("issds", $user_id, $name, $image, $price, $description);
 
+        if ($stmt->execute()) {
+            echo "<script>alert('Product added successfully!');</script>";
+        } else {
+            echo "<script>alert('Failed to add product.');</script>";
+        }
+    } else {
+        echo "<script>alert('Please fill in all fields.');</script>";
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,9 +48,9 @@ $more_result = $con->query($more_query);
   </head>
   <body>
     <div class="container">
-    <div class="navbar">
+        <div class="navbar">
         <div class="logo">
-        <img src="images/logo.png" width="125" alt="logo" />
+            <img src="images/logo.png" width="125" alt="logo" />
         </div>
         <nav>
         <ul id="MenuItems">
@@ -43,7 +62,25 @@ $more_result = $con->query($more_query);
         </nav>
         <a href="shoppingCart.php"
         ><img src="images/shoppingCart.jpg" width="30" height="30" alt="shoppingCart"
-    /></a>
+        /></a>
+        </div>
+    </div>
+
+    <div class="post-form">
+        <div class="small-container">
+        <h2>Post your Product</h2>
+        <form method="POST" action="">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" required />
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" name="image" required />
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" required />
+            <label for="description">Description:</label><br>
+            <textarea class="description" name="description" rows="5" required></textarea>
+            <button type="submit" class="btn">Post Product</button>
+        </form>
+        </div>
     </div>
 
     <?php include "footer.html"; ?>

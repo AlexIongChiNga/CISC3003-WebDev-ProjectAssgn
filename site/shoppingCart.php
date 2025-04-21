@@ -31,6 +31,43 @@ $result = $stmt->get_result();
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
+    <script>
+      // JavaScript function to handle quantity change
+      function updateCart(productId, price) {
+        const quantityInput = document.getElementById(`quantity-${productId}`);
+        const quantity = parseInt(quantityInput.value) || 1;
+
+        // Update Subtotal for the product
+        const subtotalElement = document.getElementById(`subtotal-${productId}`);
+        const subtotal = price * quantity;
+        subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+
+        // Update Total, Tax, and Grand Total
+        let total = 0;
+        const subtotals = document.querySelectorAll('.subtotal');
+        subtotals.forEach((el) => {
+          total += parseFloat(el.textContent.replace('$', ''));
+        });
+
+        const tax = total * 0.1;
+        const grandTotal = total + tax;
+
+        document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+        document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
+        document.getElementById('cart-grand-total').textContent = `$${grandTotal.toFixed(2)}`;
+        
+        // Send updated quantity to the server
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "updateCartQuantity.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText); // Optional: Log server response
+          }
+        };
+        xhr.send(`productId=${productId}&quantity=${quantity}`);
+      }
+    </script>
   </head>
   <body>
     <div class="container">
@@ -75,8 +112,8 @@ $result = $stmt->get_result();
                 echo '</div>';
                 echo '</div>';
                 echo '</td>';
-                echo '<td><input type="number" value="' . $row['quantity'] . '" /></td>';
-                echo '<td>$' . $subtotal . '</td>';
+                echo '<td><input type="number" id="quantity-' . $row['product_id'] . '" value="' . $row['quantity'] . '" min="1" onchange="updateCart(' . $row['product_id'] . ', ' . $row['price'] . ')" /></td>';
+                echo '<td class="subtotal" id="subtotal-' . $row['product_id'] . '">$' . $subtotal . '</td>';
                 echo '</tr>';
             }
         } else {
@@ -89,15 +126,17 @@ $result = $stmt->get_result();
         <table>
           <tr>
             <td>Subtotal</td>
-            <td>$<?php echo $total; ?></td>
+            <td id="cart-total">$<?php echo $total; ?></td>
           </tr>
           <tr>
             <td>Tax</td>
-            <td>$<?php echo number_format($total * 0.1, 2); ?></td>
+            <td id="cart-tax">$<?php echo number_format($total * 0.1, 2); ?></td>
           </tr>
           <tr>
-            <td>Total</td>
-            <td>$<?php echo number_format($total * 1.1, 2); ?></td>
+            <td style="background-color: #ff523b; color: white;">Grand Total</td>
+            <td style="background-color: #ff523b; color: white;"
+                id="cart-grand-total">
+                $<?php echo number_format($total * 1.1, 2); ?></td>
           </tr>
         </table>
       </div>
