@@ -2,14 +2,14 @@
 session_start();
 include("function.php");
 include("connection.php");
-$user_data = check_login($conn);
+$user_data = check_login($con);
 $user_id = $user_data['user_id'];
 
 $query = "SELECT cart.cart_id, products.image, products.name, products.price, cart.quantity 
           FROM cart
           INNER JOIN products ON cart.product_id = products.product_id
           WHERE cart.user_id = ?";
-$stmt = $conn->prepare($query);
+$stmt = $con->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
