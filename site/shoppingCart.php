@@ -5,7 +5,8 @@ include("connection.php");
 $user_data = check_login($con);
 $user_id = $user_data['user_id'];
 
-$query = "SELECT cart.cart_id, products.image, products.name, products.price, cart.quantity 
+// Include product_id in the SELECT query
+$query = "SELECT cart.cart_id, products.product_id, products.image, products.name, products.price, cart.quantity 
           FROM cart
           INNER JOIN products ON cart.product_id = products.product_id
           WHERE cart.user_id = ?";
@@ -73,9 +74,7 @@ $result = $stmt->get_result();
                 echo '<img src="' . $row['image'] . '" alt="product" />';
                 echo '<div>';
                 echo '<p>' . $row['name'] . '</p>';
-                echo '<small>Price: $' . $row['price'] . '</small>';
-                echo '<br />';
-                echo '<a href="removeFromCart.php?id=' . $row['id'] . '">Remove</a>';
+                echo '<a href="removeFromCart.php?id=' . $row['product_id'] . '">Remove</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '</td>';
