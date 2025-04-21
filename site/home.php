@@ -97,7 +97,7 @@ $more_result = $con->query($more_query);
         if ($more_result->num_rows > 0) {
             while ($product = $more_result->fetch_assoc()) {
                 echo '<div class="col-4">';
-                echo '<a href="productDetails.php?id=' . $product['product_id'] . '">';
+                echo '<a href="productDetails.php?product_id=' . $product['product_id'] . '">';
                 echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" />';
                 echo '<div class="rating">';
                 for ($i = 0; $i < 5; $i++) {
