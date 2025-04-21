@@ -164,19 +164,5 @@ $result = $stmt->get_result();
         <p class="copyright">Project</p>
       </div>
     </div>
-
-    <script>
-      var MenuItems = document.getElementById("MenuItems");
-
-      MenuItems.style.maxHeight = "0px";
-
-      function menutoogle() {
-        if (MenuItems.style.maxHeight == "0px") {
-          MenuItems.style.maxHeight = "200px";
-        } else {
-          MenuItems.style.maxHeight = "0px";
-        }
-      }
-    </script>
   </body>
 </html>
