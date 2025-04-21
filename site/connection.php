@@ -4,11 +4,8 @@ $username = "root";
 $password = "";
 $database = "goods";
 
-// Create a connection
-$con = new mysqli($servername, $username, $password, $database);
+if(!$con = mysqli_connect($servername,$username,$password,$database))
+{
 
-// Check the connection
-if ($con->connect_error) {
-    die("Connection failed: " . $con->connect_error);
+	die("failed to connect!");
 }
-?>

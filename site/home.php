@@ -2,13 +2,13 @@
 session_start();
 include("function.php");
 include("connection.php");
-$user_data = check_login($conn);
+$user_data = check_login($con);
 
 $featured_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 8";
-$featured_result = $conn->query($featured_query);
+$featured_result = $con->query($featured_query);
 
 $more_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 12 OFFSET 8";
-$more_result = $conn->query($more_query);
+$more_result = $con->query($more_query);
 
 ?>
 <!doctype html>

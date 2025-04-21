@@ -1,39 +1,41 @@
 <?php
 session_start();
-include("connection.php"); // Ensure this file defines $con
+include("connection.php");
 include("function.php");
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Something was posted
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$user_name = $_POST['username'];
+		$password = $_POST['password'];
 
-    if (!empty($username) && !empty($password) && !is_numeric($username)) {
-        // Read from database using prepared statements
-        $query = "SELECT * FROM users WHERE username = ? LIMIT 1";
-        $stmt = $con->prepare($query); // Ensure $con is properly defined in connection.php
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+		{
+			//read from database
+			$query = "select * from users where username = '$user_name' limit 1";
+			$result = mysqli_query($con, $query);
 
-        if ($result && $result->num_rows > 0) {
-            $user_data = $result->fetch_assoc();
-
-            // Verify the password
-            if (password_verify($password, $user_data['password'])) {
-                $_SESSION['user_id'] = $user_data['user_id'];
-                header("Location: home.php");
-                die;
-            } else {
-                echo "<script>alert('Wrong username or password!');</script>";
-            }
-        } else {
-            echo "<script>alert('Wrong username or password!');</script>";
-        }
-    } else {
-        echo "<script>alert('Please enter valid username and password!');</script>";
-    }
-}
+			if($result)
+			{
+				if($result && mysqli_num_rows($result) > 0)
+				{
+					$user_data = mysqli_fetch_assoc($result);
+					
+					if($user_data['password'] === $password)
+					{
+						$_SESSION['user_id'] = $user_data['user_id'];
+						header("Location: home.php");
+						die;
+					}
+				}
+			}
+			
+			echo "wrong username or password!";
+		}else
+		{
+			echo "wrong username or password!";
+		}
+	}
 ?>
 <!doctype html>
 <html lang="en">
