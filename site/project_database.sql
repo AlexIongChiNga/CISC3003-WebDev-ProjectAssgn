@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2025 at 09:01 AM
+-- Generation Time: Apr 21, 2025 at 09:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -96,7 +96,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(0, 'try', 'dc22785@um.edu.mo', '123456', '2025-04-21 06:13:20', '2025-04-21 06:13:20');
+(0, 'try', 'dc22785@um.edu.mo', '123456', '2025-04-21 06:13:20', '2025-04-21 06:13:20'),
+(0, 'secondtry', 'try@emai.com', '123456', '2025-04-21 07:39:08', '2025-04-21 07:39:08');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
