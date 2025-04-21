@@ -8,7 +8,7 @@ $user_data = check_login($con);
 $featured_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 8";
 $featured_result = $con->query($featured_query);
 
-$more_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 12 OFFSET 8";
+$more_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 8 OFFSET 8";
 $more_result = $con->query($more_query);
 
 ?>
