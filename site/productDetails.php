@@ -51,6 +51,7 @@ if ($result->num_rows > 0) {
               <li><a href="home.php">Home</a></li>
               <li><a href="shop.php">Shop</a></li>
               <?php if (isset($_SESSION['user_id'])): ?>
+                <li><a href="postproduct.php">Post</a></li>
                 <li><a href="logout.php">Logout</a></li>
               <?php else: ?>
                 <li><a href="login.php">Login/Register</a></li>
@@ -78,11 +79,13 @@ if ($result->num_rows > 0) {
           <h4>$<?php echo htmlspecialchars($product['price']); ?></h4>
           <input type="number" value="1" />
           <a href="addToCart.php?id=<?php echo $product['product_id']; ?>" class="btn">Add to Cart</a>
+        </div>
+        <div class =row-2>
           <h3>
             Product Details
             <i class="fa-solid fa-indent"></i>
           </h3>
-          <br />
+          <br>
           <p><?php echo htmlspecialchars($product['description']); ?></p>
         </div>
       </div>

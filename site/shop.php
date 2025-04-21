@@ -5,7 +5,7 @@ include("connection.php");
 $user_data = check_login($con);
 
 // Pagination setup
-$limit = 20; // Number of products per page
+$limit = 16; // Number of products per page
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Get the current page or default to 1
 $offset = ($page - 1) * $limit; // Calculate the offset for the query
 
@@ -48,6 +48,7 @@ $total_pages = ceil($total_products / $limit);
               <li><a href="home.php">Home</a></li>
               <li><a href="shop.php">Shop</a></li>
               <?php if (isset($_SESSION['user_id'])): ?>
+                <li><a href="postproduct.php">Post</a></li>
                 <li><a href="logout.php">Logout</a></li>
               <?php else: ?>
                 <li><a href="login.php">Login/Register</a></li>
