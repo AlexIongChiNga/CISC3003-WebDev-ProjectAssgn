@@ -1,33 +1,16 @@
 <?php
+
 session_start();
 include("function.php");
 include("connection.php");
 $user_data = check_login($con);
-$user_id = $user_data['user_id'];
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Get form data
-    $name = $_POST['name'];
-    $image = $_POST['image'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
+$featured_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 8";
+$featured_result = $con->query($featured_query);
 
-    // Validate inputs
-    if (!empty($name) && !empty($image) && !empty($price) && !empty($description)) {
-        // Insert product into the database
-        $query = "INSERT INTO products (user_id, name, image, price, description) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $con->prepare($query);
-        $stmt->bind_param("issds", $user_id, $name, $image, $price, $description);
+$more_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 12 OFFSET 8";
+$more_result = $con->query($more_query);
 
-        if ($stmt->execute()) {
-            echo "<script>alert('Product added successfully!');</script>";
-        } else {
-            echo "<script>alert('Failed to add product.');</script>";
-        }
-    } else {
-        echo "<script>alert('Please fill in all fields.');</script>";
-    }
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -56,12 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <ul id="MenuItems">
               <li><a href="home.php">Home</a></li>
               <li><a href="shop.php">Shop</a></li>
-              <?php if (isset($_SESSION['user_id'])): ?>
-                <li><a href="postproduct.php">Post</a></li>
-                <li><a href="logout.php">Logout</a></li>
-              <?php else: ?>
-                <li><a href="login.php">Login/Register</a></li>
-              <?php endif; ?>
+              <li><a href="postproduct.php">Post</a></li>
+              <li><a href="logout.php">Logout</a></li>
             </ul>
           </nav>
           <a href="shoppingCart.php"
@@ -88,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($featured_result->num_rows > 0) {
           while ($product = $featured_result->fetch_assoc()) {
               echo '<div class="col-4">';
-              echo '<a href="productDetails.php?product_id=' . $product['product_id'] . '">';
+              echo '<a href="productDetails.php?product_id=' . $product['product_id'] . '">'; // Add link to productDetails.php
               echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" />';
               echo '<div class="rating">';
               for ($i = 0; $i < 5; $i++) {
@@ -101,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
               echo '</div>';
               echo '<h4>' . htmlspecialchars($product['name']) . '</h4>';
               echo '<p>$' . htmlspecialchars($product['price']) . '</p>';
-              echo '</a>';
+              echo '</a>'; // Close the link
               echo '</div>';
           }
       } else {
