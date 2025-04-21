@@ -3,13 +3,31 @@ session_start();
 include("function.php");
 include("connection.php");
 $user_data = check_login($con);
+$user_id = $user_data['user_id'];
 
-$featured_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 8";
-$featured_result = $con->query($featured_query);
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Get form data
+    $name = $_POST['name'];
+    $image = $_POST['image'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
 
-$more_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 12 OFFSET 8";
-$more_result = $con->query($more_query);
+    // Validate inputs
+    if (!empty($name) && !empty($image) && !empty($price) && !empty($description)) {
+        // Insert product into the database
+        $query = "INSERT INTO products (user_id, name, image, price, description) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("issds", $user_id, $name, $image, $price, $description);
 
+        if ($stmt->execute()) {
+            echo "<script>alert('Product added successfully!');</script>";
+        } else {
+            echo "<script>alert('Failed to add product.');</script>";
+        }
+    } else {
+        echo "<script>alert('Please fill in all fields.');</script>";
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">

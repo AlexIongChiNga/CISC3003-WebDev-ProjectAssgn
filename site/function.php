@@ -12,6 +12,10 @@ function check_login($con)
             return $user_data;
         }
     }
+
+    // If the user is not logged in, redirect to login.php
+    header("Location: login.php");
+    exit;
 }
 
 function random_num($length)

@@ -42,12 +42,8 @@ $result = $stmt->get_result();
             <ul id="MenuItems">
               <li><a href="home.php">Home</a></li>
               <li><a href="shop.php">Shop</a></li>
-              <?php if (isset($_SESSION['user_id'])): ?>
-                <li><a href="postproduct.php">Post</a></li>
-                <li><a href="logout.php">Logout</a></li>
-              <?php else: ?>
-                <li><a href="login.php">Login/Register</a></li>
-              <?php endif; ?>
+              <li><a href="postproduct.php">Post</a></li>
+              <li><a href="logout.php">Logout</a></li>
             </ul>
           </nav>
           <a href="shoppingCart.php"
