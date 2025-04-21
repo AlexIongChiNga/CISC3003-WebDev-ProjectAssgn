@@ -26,14 +26,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 						$_SESSION['user_id'] = $user_data['user_id'];
 						header("Location: home.php");
 						die;
-					}
+					} else {
+            echo "<script>alert('Wrong username or password!');</script>";
+          }
 				}
 			}
 			
-			echo "wrong username or password!";
+			echo "<script>alert('Wrong username or password!');</script>";
 		}else
 		{
-			echo "wrong username or password!";
+			echo "<script>alert('Please enter valid username and password!');</script>";
 		}
 	}
 ?>
