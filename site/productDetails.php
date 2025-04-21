@@ -50,7 +50,11 @@ if ($result->num_rows > 0) {
             <ul id="MenuItems">
               <li><a href="home.php">Home</a></li>
               <li><a href="shop.php">Shop</a></li>
-              <li><a href="login.php">Login/Register</a></li>
+              <?php if (isset($_SESSION['user_id'])): ?>
+                <li><a href="logout.php">Logout</a></li>
+              <?php else: ?>
+                <li><a href="login.php">Login/Register</a></li>
+              <?php endif; ?>
             </ul>
           </nav>
           <a href="shoppingCart.php"
