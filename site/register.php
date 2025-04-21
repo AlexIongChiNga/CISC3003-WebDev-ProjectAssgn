@@ -20,8 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
             echo "<script>alert('Username already taken. Please choose another.');</script>";
         } else {
             // Insert new user
-            $user_id = random_num(20);
-            $query = "INSERT INTO users (user_id, username, password, email) VALUES ('$user_id','$username', '$password', '$email')";
+            $query = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
             if ($con->query($query) === TRUE) {
                 echo "<script>alert('Registration successful!');</script>";
                 header("Location: login.php");
