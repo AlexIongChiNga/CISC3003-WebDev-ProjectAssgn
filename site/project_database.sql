@@ -27,8 +27,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `car`
 --
 
-CREATE TABLE `car` (
-  `car_id` int(11) NOT NULL,
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT 1
@@ -96,10 +96,10 @@ CREATE TABLE `users` (
 --
 
 --
--- Indexes for table `car`
+-- Indexes for table `cart`
 --
-ALTER TABLE `car`
-  ADD PRIMARY KEY (`car_id`),
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`),
   ADD KEY `product_id` (`product_id`),
   ADD KEY `user_id` (`user_id`);
 
@@ -121,10 +121,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `car`
+-- AUTO_INCREMENT for table `cart`
 --
-ALTER TABLE `car`
-  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -143,11 +143,11 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `car`
+-- Constraints for table `cart`
 --
-ALTER TABLE `car`
-  ADD CONSTRAINT `car_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
-  ADD CONSTRAINT `car_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

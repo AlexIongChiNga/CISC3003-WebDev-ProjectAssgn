@@ -416,7 +416,7 @@ input::focus {
   cursor: pointer;
 }
 
-.car-page {
+.cart-page {
   margin: 80px auto;
 }
 
@@ -425,7 +425,7 @@ table {
   border-collapse: collapse;
 }
 
-.car-info {
+.cart-info {
   display: flex;
   text-wrap: wrap;
 }
@@ -581,7 +581,7 @@ form a {
     line-height: 32px;
   }
 
-  .car-info p {
+  .cart-info p {
     display: none;
   }
 }

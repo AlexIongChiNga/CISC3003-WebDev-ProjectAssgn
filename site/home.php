@@ -48,8 +48,8 @@ $more_result = $conn->query($more_query);
               <li><a href="login.php">Login/Register</a></li>
             </ul>
           </nav>
-          <a href="shoppingCar.php"
-          ><img src="images/shoppingCar.jpg" width="30" height="30" alt="shoppingCar"
+          <a href="shoppingCart.php"
+          ><img src="images/shoppingCart.jpg" width="30" height="30" alt="shoppingCart"
         /></a>
         </div>
         <div class="row">
