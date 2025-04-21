@@ -55,6 +55,17 @@ $result = $stmt->get_result();
         document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
         document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
         document.getElementById('cart-grand-total').textContent = `$${grandTotal.toFixed(2)}`;
+        
+        // Send updated quantity to the server
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "updateCartQuantity.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText); // Optional: Log server response
+          }
+        };
+        xhr.send(`productId=${productId}&quantity=${quantity}`);
       }
     </script>
   </head>
@@ -164,5 +175,19 @@ $result = $stmt->get_result();
         <p class="copyright">Project</p>
       </div>
     </div>
+
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoogle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+    </script>
   </body>
 </html>
