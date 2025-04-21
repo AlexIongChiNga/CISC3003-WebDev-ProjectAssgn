@@ -93,38 +93,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
       </div>
     </div>
 
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="footer-col-1">
-            <img src="images/logo.png" alt="logo" />
-            <p>
-              Our purpose is to connect people, enabling them to buy and sell goods securely and conveniently. 
-              Discover unique items and create meaningful transactions within a trusted community.
-            </p>
-          </div>
-          <div class="footer-col-2">
-            <h3>Useful Links</h3>
-            <ul>
-              <li>Coupons</li>
-              <li>Blog Post</li>
-              <li>Return Policy</li>
-              <li>Join Affiliate</li>
-            </ul>
-          </div>
-          <div class="footer-col-3">
-            <h3>Follow us</h3>
-            <ul>
-              <li>Facebook</li>
-              <li>Twitter</li>
-              <li>Instagram</li>
-              <li>Youtube</li>
-            </ul>
-          </div>
-        </div>
-        <hr />
-        <p class="copyright">Project</p>
-      </div>
-    </div>
+    <?php include "footer.php"; ?>
   </body>
 </html>
