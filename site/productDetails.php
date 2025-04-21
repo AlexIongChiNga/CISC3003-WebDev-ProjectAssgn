@@ -1,15 +1,6 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "goods";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("connection.php");
 
 $product_id = isset($_GET['product_id']) ? (int)$_GET['product_id'] : 0;
 $query = "SELECT * FROM products WHERE id = $product_id";

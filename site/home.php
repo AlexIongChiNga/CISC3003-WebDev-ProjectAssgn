@@ -1,15 +1,8 @@
 <?php
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "goods";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+session_start();
+include("function.php");
+include("connection.php");
+$user_data = check_login($conn);
 
 $featured_query = "SELECT product_id, price, name, rating, image, description FROM products LIMIT 8";
 $featured_result = $conn->query($featured_query);
