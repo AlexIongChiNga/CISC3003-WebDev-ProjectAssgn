@@ -1,11 +1,18 @@
 <?php
-
+session_start();
+include("function.php");
 include("connection.php");
+$user_data = check_login($conn);
+$user_id = $user_data['user_id'];
 
 $query = "SELECT cart.cart_id, products.image, products.name, products.price, cart.quantity 
           FROM cart
-          INNER JOIN products ON cart.product_id = products.product_id";
-$result = $conn->query($query);
+          INNER JOIN products ON cart.product_id = products.product_id
+          WHERE cart.user_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 ?>
 <!doctype html>
@@ -34,7 +41,11 @@ $result = $conn->query($query);
             <ul id="MenuItems">
               <li><a href="home.php">Home</a></li>
               <li><a href="shop.php">Shop</a></li>
-              <li><a href="login.php">Login/Register</a></li>
+              <?php if (isset($_SESSION['user_id'])): ?>
+                <li><a href="logout.php">Logout</a></li>
+              <?php else: ?>
+                <li><a href="login.php">Login/Register</a></li>
+              <?php endif; ?>
             </ul>
           </nav>
           <a href="shoppingCart.php"

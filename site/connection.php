@@ -4,8 +4,11 @@ $username = "root";
 $password = "";
 $database = "goods";
 
-$conn = new mysqli($servername, $username, $password, $database);
+// Create a connection
+$con = new mysqli($servername, $username, $password, $database);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Check the connection
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
 }
+?>

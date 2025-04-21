@@ -1,6 +1,8 @@
 <?php
-
+session_start();
+include("function.php");
 include("connection.php");
+$user_data = check_login($conn);
 
 $product_id = isset($_GET['product_id']) ? (int)$_GET['product_id'] : 0;
 $query = "SELECT * FROM products WHERE id = $product_id";

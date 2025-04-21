@@ -1,30 +1,46 @@
 <?php
+session_start();
+include("connection.php"); // Ensure this file defines $con
+include("function.php");
 
-include("connection.php");
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Something was posted
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-  $username = $conn->real_escape_string($_POST['username']);
-  $password = $conn->real_escape_string($_POST['password']);
+    if (!empty($username) && !empty($password) && !is_numeric($username)) {
+        // Read from database using prepared statements
+        $query = "SELECT * FROM users WHERE username = ? LIMIT 1";
+        $stmt = $con->prepare($query); // Ensure $con is properly defined in connection.php
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-  $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-  $result = $conn->query($query);
+        if ($result && $result->num_rows > 0) {
+            $user_data = $result->fetch_assoc();
 
-  if ($result->num_rows > 0) {
-      echo "<script>alert('Login successful!');</script>";
-      header("Location: home.php");
-      exit;
-  } else {
-      echo "<script>alert('Invalid username or password');</script>";
-  }
+            // Verify the password
+            if (password_verify($password, $user_data['password'])) {
+                $_SESSION['user_id'] = $user_data['user_id'];
+                header("Location: home.php");
+                die;
+            } else {
+                echo "<script>alert('Wrong username or password!');</script>";
+            }
+        } else {
+            echo "<script>alert('Wrong username or password!');</script>";
+        }
+    } else {
+        echo "<script>alert('Please enter valid username and password!');</script>";
+    }
 }
-
 ?>
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Goods</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -57,10 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <div class="account-page">
       <div class="container">
         <div class="row">
-          
           <div class="col-2">
             <div class="form-container">
-            <h2>Login</h2>
+              <h2>Login</h2>
               <form id="LoginForm" method="POST" action="">
                 <input type="text" name="username" placeholder="Username" required />
                 <input type="password" name="password" placeholder="Password" required />
@@ -89,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             <ul>
               <li>Coupons</li>
               <li>Blog Post</li>
-              <li>Retuen Policy</li>
+              <li>Return Policy</li>
               <li>Join Affiliate</li>
             </ul>
           </div>
@@ -107,19 +122,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         <p class="copyright">Project</p>
       </div>
     </div>
-
-    <script>
-      var MenuItems = document.getElementById("MenuItems");
-
-      MenuItems.style.maxHeight = "0px";
-
-      function menutoogle() {
-        if (MenuItems.style.maxHeight == "0px") {
-          MenuItems.style.maxHeight = "200px";
-        } else {
-          MenuItems.style.maxHeight = "0px";
-        }
-      }
-    </script>
   </body>
 </html>

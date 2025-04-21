@@ -1,30 +1,32 @@
 <?php
+session_start();
 
 include("connection.php");
+include("function.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
-    $username = $conn->real_escape_string($_POST['username']);
-    $password = $conn->real_escape_string($_POST['password']);
-    $email = $conn->real_escape_string($_POST['email']);
+    $username = $con->real_escape_string($_POST['username']);
+    $password = $con->real_escape_string($_POST['password']);
+    $email = $con->real_escape_string($_POST['email']);
     //Check the email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "<script>alert('Invalid email format');</script>";
     } else {
         // Check the username 
         $check_query = "SELECT * FROM users WHERE username = '$username'";
-        $check_result = $conn->query($check_query);
+        $check_result = $con->query($check_query);
 
         if ($check_result->num_rows > 0) {
             echo "<script>alert('Username already taken. Please choose another.');</script>";
         } else {
             // Insert new user
             $query = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
-            if ($conn->query($query) === TRUE) {
+            if ($con->query($query) === TRUE) {
                 echo "<script>alert('Registration successful!');</script>";
                 header("Location: login.php");
                 exit;
             } else {
-                echo "<script>alert('Error: " . $conn->error . "');</script>";
+                echo "<script>alert('Error: " . $con->error . "');</script>";
             }
         }
     }
@@ -119,19 +121,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
         <p class="copyright">Project</p>
       </div>
     </div>
-
-    <script>
-      var MenuItems = document.getElementById("MenuItems");
-
-      MenuItems.style.maxHeight = "0px";
-
-      function menutoogle() {
-        if (MenuItems.style.maxHeight == "0px") {
-          MenuItems.style.maxHeight = "200px";
-        } else {
-          MenuItems.style.maxHeight = "0px";
-        }
-      }
-    </script>
   </body>
 </html>

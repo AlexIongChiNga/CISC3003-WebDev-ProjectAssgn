@@ -1,6 +1,8 @@
 <?php
-
+session_start();
+include("function.php");
 include("connection.php");
+$user_data = check_login($conn);
 
 $query = "SELECT product_id, name, price, image, rating FROM products"; 
 $result = $conn->query($query);
