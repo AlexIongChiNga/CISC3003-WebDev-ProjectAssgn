@@ -90,41 +90,6 @@ if ($result->num_rows > 0) {
         </div>
       </div>
     </div>
-    <!--<div class="small-container">
-      <div class="row row-2">
-        <h2>Related Products</h2>
-        <p>View More</p>
-      </div>
-    </div>
-    <div class="small-container">
-      <div class="row">
-        <?php
-        /*$related_query = "SELECT * FROM products WHERE category = '" . $conn->real_escape_string($product['category']) . "' AND id != $product_id LIMIT 4";
-        $related_result = $conn->query($related_query);
-
-        if ($related_result->num_rows > 0) {
-            while ($related = $related_result->fetch_assoc()) {
-                echo '<div class="col-4">';
-                echo '<img src="' . htmlspecialchars($related['image']) . '" alt="' . htmlspecialchars($related['name']) . '" />';
-                echo '<div class="rating">';
-                for ($i = 0; $i < 5; $i++) {
-                    if ($i < $related['rating']) {
-                        echo '<i class="fa-solid fa-star"></i>';
-                    } else {
-                        echo '<i class="fa-regular fa-star"></i>';
-                    }
-                }
-                echo '</div>';
-                echo '<h4>' . htmlspecialchars($related['name']) . '</h4>';
-                echo '<p>$' . htmlspecialchars($related['price']) . '</p>';
-                echo '</div>';
-            }
-        } else {
-            echo '<p>No related products available.</p>';
-        }*/
-        ?>
-      </div>
-    </div>-->
 
     <div class="footer">
       <div class="container">
@@ -159,16 +124,5 @@ if ($result->num_rows > 0) {
         <p class="copyright">Project</p>
       </div>
     </div>
-
-    <script>
-      var ProductImg = document.getElementById("ProductImg");
-      var SmallImg = document.getElementsByClassName("small-img");
-
-      for (let i = 0; i < SmallImg.length; i++) {
-        SmallImg[i].onclick = function () {
-          ProductImg.src = SmallImg[i].src;
-        };
-      }
-    </script>
   </body>
 </html>

@@ -45,7 +45,11 @@ $more_result = $conn->query($more_query);
             <ul id="MenuItems">
               <li><a href="home.php">Home</a></li>
               <li><a href="shop.php">Shop</a></li>
-              <li><a href="login.php">Login/Register</a></li>
+              <?php if (isset($_SESSION['user_id'])): ?>
+                <li><a href="logout.php">Logout</a></li>
+              <?php else: ?>
+                <li><a href="login.php">Login/Register</a></li>
+              <?php endif; ?>
             </ul>
           </nav>
           <a href="shoppingCart.php"
@@ -72,7 +76,7 @@ $more_result = $conn->query($more_query);
         if ($featured_result->num_rows > 0) {
           while ($product = $featured_result->fetch_assoc()) {
               echo '<div class="col-4">';
-              echo '<a href="productDetails.php?product_id=' . $product['product_id'] . '">'; // Add link to productDetails.php
+              echo '<a href="productDetails.php?product_id=' . $product['product_id'] . '">';
               echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" />';
               echo '<div class="rating">';
               for ($i = 0; $i < 5; $i++) {
@@ -85,7 +89,7 @@ $more_result = $conn->query($more_query);
               echo '</div>';
               echo '<h4>' . htmlspecialchars($product['name']) . '</h4>';
               echo '<p>$' . htmlspecialchars($product['price']) . '</p>';
-              echo '</a>'; // Close the link
+              echo '</a>';
               echo '</div>';
           }
       } else {

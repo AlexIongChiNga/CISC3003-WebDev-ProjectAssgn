@@ -66,7 +66,7 @@ $total_pages = ceil($total_products / $limit);
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
               echo '<div class="col-4">';
-              echo '<a href="productDetails.php?product_id=' . $row['product_id'] . '">'; // Add link to productDetails.php
+              echo '<a href="productDetails.php?product_id=' . $row['product_id'] . '">';
               echo '<img src="' . $row['image'] . '" alt="' . $row['name'] . '" />';
               echo '<div class="rating">';
               for ($i = 0; $i < 5; $i++) {
@@ -79,7 +79,7 @@ $total_pages = ceil($total_products / $limit);
               echo '</div>';
               echo '<h4>' . $row['name'] . '</h4>';
               echo '<p>$' . $row['price'] . '</p>';
-              echo '</a>'; // Close the link
+              echo '</a>';
               echo '</div>';
           }
         } else {

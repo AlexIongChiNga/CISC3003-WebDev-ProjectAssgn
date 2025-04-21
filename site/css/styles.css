@@ -535,13 +535,7 @@ form .btn:focus {
   outline: none;
 }
 
-#LoginForm {
-  left: -300px;
-}
 
-#RegForm {
-  left: 0;
-}
 
 form a {
   font-size: 12px;

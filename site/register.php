@@ -11,20 +11,32 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-  $username = $conn->real_escape_string($_POST['username']);
-  $password = $conn->real_escape_string($_POST['password']);
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
+    $username = $conn->real_escape_string($_POST['username']);
+    $password = $conn->real_escape_string($_POST['password']);
+    $email = $conn->real_escape_string($_POST['email']);
+    //Check the email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<script>alert('Invalid email format');</script>";
+    } else {
+        // Check the username 
+        $check_query = "SELECT * FROM users WHERE username = '$username'";
+        $check_result = $conn->query($check_query);
 
-  $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-  $result = $conn->query($query);
-
-  if ($result->num_rows > 0) {
-      echo "<script>alert('Login successful!');</script>";
-      header("Location: home.php");
-      exit;
-  } else {
-      echo "<script>alert('Invalid username or password');</script>";
-  }
+        if ($check_result->num_rows > 0) {
+            echo "<script>alert('Username already taken. Please choose another.');</script>";
+        } else {
+            // Insert new user
+            $query = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
+            if ($conn->query($query) === TRUE) {
+                echo "<script>alert('Registration successful!');</script>";
+                header("Location: login.php");
+                exit;
+            } else {
+                echo "<script>alert('Error: " . $conn->error . "');</script>";
+            }
+        }
+    }
 }
 
 ?>
@@ -69,13 +81,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
           
           <div class="col-2">
             <div class="form-container">
-            <h2>Login</h2>
-              <form id="LoginForm" method="POST" action="">
+            <h2>Register</h2>
+              <form id="RegForm" method="POST" action="">
                 <input type="text" name="username" placeholder="Username" required />
                 <input type="password" name="password" placeholder="Password" required />
-                <button type="submit" name="login" class="btn">Login</button>
-                <a href="">Forgot Password</a><br>
-                <a href="register.php">Don't have an account? Register here</a>
+                <input type="email" name="email" placeholder="Email" required />
+                <button type="submit" name="register" class="btn">Register</button><br>
+                <a href="login.php">Already have an account? Login here</a>
               </form>
             </div>
           </div>
