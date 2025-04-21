@@ -5,7 +5,7 @@ $password = "";
 $database = "goods";
 
 // Create a connection
-$con = new mysqli($servername, $username, $password, $database);
+$con = mysqli_connect($servername, $username, $password, $database);
 
 // Check the connection
 if ($con->connect_error) {

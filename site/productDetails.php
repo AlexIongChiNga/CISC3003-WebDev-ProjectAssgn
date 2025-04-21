@@ -2,20 +2,20 @@
 session_start();
 include("function.php");
 include("connection.php");
-$user_data = check_login($conn);
+$user_data = check_login($con);
 
 $product_id = isset($_GET['product_id']) ? (int)$_GET['product_id'] : 0;
 $query = "SELECT * FROM products WHERE id = $product_id";
 $product_id = isset($_GET['product_id']) ? (int)$_GET['product_id'] : 0;
 $query = "SELECT * FROM products WHERE product_id = $product_id"; 
-$result = $conn->query($query);
+$result = $con->query($query);
 
 if ($result->num_rows > 0) {
     $product = $result->fetch_assoc();
 } else {
     die("Product not found.");
 }
-$result = $conn->query($query);
+$result = $con->query($query);
 
 if ($result->num_rows > 0) {
     $product = $result->fetch_assoc();

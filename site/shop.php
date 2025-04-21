@@ -2,14 +2,14 @@
 session_start();
 include("function.php");
 include("connection.php");
-$user_data = check_login($conn);
+$user_data = check_login($con);
 
 $query = "SELECT product_id, name, price, image, rating FROM products"; 
-$result = $conn->query($query);
+$result = $con->query($query);
 
 $limit = 20;
 $total_query = "SELECT COUNT(*) AS total FROM products";
-$total_result = $conn->query($total_query);
+$total_result = $con->query($total_query);
 $total_row = $total_result->fetch_assoc();
 $total_products = $total_row['total'];
 $total_pages = ceil($total_products / $limit);

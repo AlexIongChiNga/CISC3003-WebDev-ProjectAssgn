@@ -15,12 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
-
+        
         if ($result && $result->num_rows > 0) {
             $user_data = $result->fetch_assoc();
-
+            $hash = password_hash($user_data['password'], PASSWORD_DEFAULT);
             // Verify the password
-            if (password_verify($password, $user_data['password'])) {
+            if (password_verify($password, $hash)) {
                 $_SESSION['user_id'] = $user_data['user_id'];
                 header("Location: home.php");
                 die;
