@@ -118,8 +118,8 @@ $result = $stmt->get_result();
             <td id="cart-tax">$<?php echo number_format($total * 0.1, 2); ?></td>
           </tr>
           <tr>
-            <td style="background-color: #ff523b; color: white;">Grand Total</td>
-            <td style="background-color: #ff523b; color: white;"
+            <td style="background-color: #75396c; color: white;">Grand Total</td>
+            <td style="background-color: #75396c; color: white;"
                 id="cart-grand-total">
                 $<?php echo number_format($total * 1.1, 2); ?></td>
           </tr>
