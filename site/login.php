@@ -20,8 +20,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 				if($result && mysqli_num_rows($result) > 0)
 				{
 					$user_data = mysqli_fetch_assoc($result);
-
-					if($user_data['password'] === $password)
+          $hash = password_hash($user_data["password"], PASSWORD_DEFAULT);
+          
+          if (password_verify($password, $hash))
 					{
 						$_SESSION['user_id'] = $user_data['user_id'];
 						header("Location: home.php");
