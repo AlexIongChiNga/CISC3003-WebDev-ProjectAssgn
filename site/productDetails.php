@@ -41,7 +41,9 @@ if ($result->num_rows > 0) {
     />
   </head>
   <body>
-    <?php include "include/navbar.html"; ?>
+    <div class="container">
+        <?php include "include/navbar.html"; ?>
+    </div>
 
     <div class="small-container single-product">
       <div class="row">

@@ -30,7 +30,19 @@ $more_result = $con->query($more_query);
   </head>
   <body>
     <div class="header">
-      <?php include "include/navbar.html"; ?>
+        <div class="container">
+            <?php include "include/navbar.html"; ?>
+            <div class="row">
+              <div class="col-2">
+                <h1>Buy and Sell<br />With Ease!</h1>
+                <p>
+                    Discover unique items from trusted users. Whether you're buying or selling,<br />
+                    our platform makes it simple, secure, and convenient for everyone.
+                </p>
+                <a href="shop.php" class="btn">Explore Now &#8594;</a>
+              </div>
+            </div>
+        </div>
     </div>
 
     <div class="small-container">

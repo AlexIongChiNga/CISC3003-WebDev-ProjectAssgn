@@ -38,7 +38,9 @@ $total_pages = ceil($total_products / $limit);
     />
   </head>
   <body>
-    <?php include "include/navbar.html"; ?>
+    <div class="container">
+        <?php include "include/navbar.html"; ?>
+    </div>
 
     <div class="small-container">
       <div class="row row-2">

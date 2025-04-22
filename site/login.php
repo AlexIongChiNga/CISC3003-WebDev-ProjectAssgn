@@ -56,7 +56,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     />
   </head>
   <body>
-    <?php include "include/navbar.html"; ?>
+    <div class="container">
+            <?php include "include/navbar.html"; ?>
+    </div>
 
     <?php
     //error message

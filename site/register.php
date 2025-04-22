@@ -51,7 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     />
   </head>
   <body>
-    <?php include "include/navbar.html"; ?>
+    <div class="container">
+        <?php include "include/navbar.html"; ?>
+    </div>
 
     <div class="account-page">
       <div class="container">
