@@ -13,8 +13,8 @@ function check_login($con)
         }
     }
 
-    // If the user is not logged in, redirect to login.php
-    header("Location: login.php");
+    // If the user is not logged in, redirect to login.php, and display an error message
+    header("Location: login.php?error=not_logged_in");
     exit;
 }
 
@@ -29,7 +29,7 @@ function random_num($length)
 
 	$len = rand(4,$length);
 
-	for ($i=0; $i < $len; $i++) { 
+	for ($i=0; $i < $len; $i++) {
 		# code...
 
 		$text .= rand(0,9);

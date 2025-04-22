@@ -74,6 +74,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
       </div>
     </div>
 
+    <?php
+    //error message
+    if (isset($_GET['error'])) {
+        $error = $_GET['error'];
+        if ($error == 'not_logged_in') {
+            echo '<div class="error-message">You must be logged in to access this page.</div>';
+        }
+    }
+    ?>
+
     <div class="account-page">
       <div class="container">
         <div class="row">

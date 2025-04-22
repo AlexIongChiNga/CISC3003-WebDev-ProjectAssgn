@@ -488,6 +488,27 @@ th:last-child {
   text-align: right;
 }
 
+.error-message {
+  color: red;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .account-page {
   padding: 50px 0;
   background: radial-gradient(#fff, #ffd6d6);
