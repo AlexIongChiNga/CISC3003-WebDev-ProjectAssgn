@@ -120,6 +120,6 @@ $more_result = $con->query($more_query);
       </div>
     </div>
 
-    <?php include "footer.html"; ?>
+    <?php include "include/footer.html"; ?>
   </body>
 </html>

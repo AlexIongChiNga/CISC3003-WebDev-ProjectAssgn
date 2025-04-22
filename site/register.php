@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "<script>alert('Invalid email format');</script>";
     } else {
-        // Check the username 
+        // Check the username
         $check_query = "SELECT * FROM users WHERE username = '$username'";
         $check_result = $con->query($check_query);
 
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     <div class="account-page">
       <div class="container">
         <div class="row">
-          
+
           <div class="col-2">
             <div class="form-container">
             <h2>Register</h2>
@@ -89,6 +89,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
       </div>
     </div>
 
-    <?php include "footer.html"; ?>
+    <?php include "include/footer.html"; ?>
   </body>
 </html>

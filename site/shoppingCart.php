@@ -6,7 +6,7 @@ $user_data = check_login($con);
 $user_id = $user_data['user_id'];
 
 // Include product_id in the SELECT query
-$query = "SELECT cart.cart_id, products.product_id, products.image, products.name, products.price, cart.quantity 
+$query = "SELECT cart.cart_id, products.product_id, products.image, products.name, products.price, cart.quantity
           FROM cart
           INNER JOIN products ON cart.product_id = products.product_id
           WHERE cart.user_id = ?";
@@ -55,7 +55,7 @@ $result = $stmt->get_result();
         document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
         document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
         document.getElementById('cart-grand-total').textContent = `$${grandTotal.toFixed(2)}`;
-        
+
         // Send updated quantity to the server
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "updateCartQuantity.php", true);
@@ -142,7 +142,7 @@ $result = $stmt->get_result();
       </div>
     </div>
 
-    <?php include "footer.html"; ?>
+    <?php include "include/footer.html"; ?>
 
     <script>
       var MenuItems = document.getElementById("MenuItems");

@@ -103,7 +103,7 @@ $total_pages = ceil($total_products / $limit);
       </div>
     </div>
 
-    <?php include "footer.html"; ?>
+    <?php include "include/footer.html"; ?>
 
     <script>
       var MenuItems = document.getElementById("MenuItems");

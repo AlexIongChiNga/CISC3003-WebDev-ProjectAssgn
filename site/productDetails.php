@@ -7,7 +7,7 @@ $user_data = check_login($con);
 $product_id = isset($_GET['product_id']) ? (int)$_GET['product_id'] : 0;
 $query = "SELECT * FROM products WHERE id = $product_id";
 $product_id = isset($_GET['product_id']) ? (int)$_GET['product_id'] : 0;
-$query = "SELECT * FROM products WHERE product_id = $product_id"; 
+$query = "SELECT * FROM products WHERE product_id = $product_id";
 $result = $con->query($query);
 
 if ($result->num_rows > 0) {
@@ -59,7 +59,7 @@ if ($result->num_rows > 0) {
         /></a>
         </div>
     </div>
-    
+
     <div class="small-container single-product">
       <div class="row">
         <div class="col-2">
@@ -87,6 +87,6 @@ if ($result->num_rows > 0) {
       </div>
     </div>
 
-<?php include "footer.html"; ?>
+    <?php include "include/footer.html"; ?>
   </body>
 </html>
