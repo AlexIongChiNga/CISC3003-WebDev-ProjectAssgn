@@ -47,24 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     />
   </head>
   <body>
-    <div class="container">
-        <div class="navbar">
-        <div class="logo">
-            <img src="images/logo.png" width="125" alt="logo" />
-        </div>
-        <nav>
-        <ul id="MenuItems">
-            <li><a href="home.php">Home</a></li>
-            <li><a href="shop.php">Shop</a></li>
-            <li><a href="postproduct.php">Post</a></li>
-              <li><a href="logout.php">Logout</a></li>
-        </ul>
-        </nav>
-        <a href="shoppingCart.php"
-        ><img src="images/shoppingCart.jpg" width="30" height="30" alt="shoppingCart"
-        /></a>
-        </div>
-    </div>
+    <?php include "include/navbar.html"; ?>
 
     <div class="post-form">
         <div class="small-container">
