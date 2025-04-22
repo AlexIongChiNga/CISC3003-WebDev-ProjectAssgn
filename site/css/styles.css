@@ -74,7 +74,7 @@ p {
 
 .btn {
   display: inline-block;
-  background: #ff523b;
+  background: #75396c;
   color: #fff;
   padding: 8px 30px;
   margin: 30px 0;
@@ -138,7 +138,7 @@ p {
 
 .title::after {
   content: "";
-  background: #ff523b;
+  background: #75396c;
   width: 80px;
   height: 5px;
   border-radius: 5px;
@@ -159,7 +159,7 @@ h4 {
 
 .rating .fa-star,
 .rating .fa-star-half-stroke {
-  color: #ff523b;
+  color: #75396c;
 }
 
 .col-4:hover {
@@ -204,7 +204,7 @@ small {
 
 .testimonial .fa-quote-left {
   font-size: 34px;
-  color: #ff523b;
+  color: #75396c;
 }
 
 .col-3 p {
@@ -346,7 +346,7 @@ ul {
 }
 
 select {
-  border: 1px solid #ff523b;
+  border: 1px solid #75396c;
   padding: 5px;
 }
 
@@ -360,7 +360,7 @@ select:focus {
 
 .page-btn span {
   display: inline-block;
-  border: 1px solid #ff523b;
+  border: 1px solid #75396c;
   margin-left: 10px;
   width: 40px;
   height: 40px;
@@ -370,7 +370,7 @@ select:focus {
 }
 
 .page-btn span:hover {
-  background: #ff523b;
+  background: #75396c;
   color: white;
 }
 
@@ -404,7 +404,7 @@ select:focus {
   padding-left: 10px;
   font-size: 20px;
   margin-right: 10px;
-  border: 1px solid #ff523b;
+  border: 1px solid #75396c;
 }
 
 input::focus {
@@ -412,7 +412,7 @@ input::focus {
 }
 
 .single-product .fa-solid {
-  color: #ff523b;
+  color: #75396c;
   margin-left: 10px;
 }
 
@@ -444,7 +444,7 @@ th {
   text-align: left;
   padding: 5px;
   color: #fff;
-  background-color: #ff523b;
+  background-color: #75396c;
   font-weight: normal;
 }
 
@@ -459,7 +459,7 @@ td input {
 }
 
 td a {
-  color: #ff523b;
+  color: #75396c;
   font-size: 12px;
 }
 
@@ -475,7 +475,7 @@ td img {
 }
 
 .total-price table {
-  border-top: 3px solid #ff523b;
+  border-top: 3px solid #75396c;
   width: 100%;
   max-width: 400px;
 }
@@ -511,7 +511,7 @@ th:last-child {
 
 .account-page {
   padding: 50px 0;
-  background: radial-gradient(#fff, #ffd6d6);
+  background: radial-gradient(#fff, #f3bdd7);
 }
 
 .post-form{
@@ -586,7 +586,7 @@ form a {
 #Indicator {
   width: 100px;
   border: none;
-  background: #ff523b;
+  background: #75396c;
   height: 3px;
   margin-top: 8px;
   transform: translateX(100px);
