@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
     $update_stmt->execute();
 } else {
     // If the product is not in the cart, insert it
-    $insert_query = "INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, 1)";
+    $insert_query = "INSERT INTO cart (cart_id, user_id, product_id, quantity) VALUES (0, ?, ?, 1)";
     $insert_stmt = $con->prepare($insert_query);
     $insert_stmt->bind_param("ii", $user_id, $product_id);
     $insert_stmt->execute();
