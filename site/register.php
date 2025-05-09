@@ -4,6 +4,9 @@ session_start();
 include("connection.php");
 include("function.php");
 
+require("sendMail.php");
+use Mail;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $username = $con->real_escape_string($_POST['username']);
     $password = $con->real_escape_string($_POST['password']);
@@ -20,9 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
             echo "<script>alert('Username already taken. Please choose another.');</script>";
         } else {
             // Insert new user
-            $user_id = random_num(10);
+            $user_id = random_num(8);
             $query = "INSERT INTO users (user_id, username, password, email) VALUES ('$user_id','$username', '$password', '$email')";
             if ($con->query($query) === TRUE) {
+                $mail = new Mail();
+                $mail->sendRegisterEmail($email, $user_id);
                 echo "<script>alert('Registration successful!');</script>";
                 header("Location: login.php");
                 exit;
