@@ -56,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <h2>Post your Product</h2>
         <form method="POST" action="">
             <label for="name">Product Name:</label>
-            <input type="text" id="name" name="name" required />
-            <label for="image">Image URL:</label>
-            <input type="text" id="image" name="image" required />
+            <input type="text" id="name" name="name" placeholder="enter product name" class="box" required />
+            <label for="image">Image:</label>
+            <input type="file" name="image" required accept="image/*" class="box">
             <label for="price">Price:</label>
-            <input type="number" id="price" name="price" step="0.01" required />
+            <input type="number" id="price" name="price" step="0.01" placeholder="enter product price" class="box" required />
             <label for="description">Description:</label><br>
-            <textarea class="description" name="description" rows="5" required></textarea>
+            <textarea class="description" name="description" placeholder="enter product description" rows="5" class="box" required></textarea>
             <button type="submit" class="btn">Post Product</button>
         </form>
         </div>
