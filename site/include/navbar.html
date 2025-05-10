@@ -1,6 +1,12 @@
   <div class="navbar">
-    <div class="logo">
+    <div class="logo" style="top:20px;">
       <img src="images/logo.png" width="125" alt="logo" />
+    </div>
+    <div class="search-container">
+      <form action="search.php" method="get" id="search-form">
+        <input type="text" placeholder="Search..." name="search" id="search-input" />
+        <button type="submit" id="search-button"><i class="fa fa-search"></i></button>
+      </form>
     </div>
     <nav>
       <ul id="MenuItems">
@@ -14,10 +20,4 @@
     <a href="shoppingCart.php"
     ><img src="images/shoppingCart.jpg" width="30" height="30" alt="shoppingCart"
   /></a>
-    <div class="search-container">
-  <form action="search.php" method="get" id="search-form">
-    <input type="text" placeholder="Search..." name="search" id="search-input" />
-    <button type="submit" id="search-button"><i class="fa fa-search"></i></button>
-  </form>
-</div>
   </div>

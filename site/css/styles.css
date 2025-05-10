@@ -543,53 +543,70 @@ th:last-child {
 .search-container {
   position: relative;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  left: 20px;
+  width: fit-content; /* Adjust width to content */
 }
 
 /* Initially hide the input box */
 #search-input {
-  width: 0;
-  padding: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   outline: none;
-  transition: width 0.3s ease, padding 0.3s ease;
+  transition: all 0.5s ease;
   opacity: 0;
   visibility: hidden;
+  width: 0;
+  height: 40px;
+  border: none;
+  background: #f2f2f2;
+  border-radius: 30px;
+  color: gray;
+  font-size: 16px;
+  padding-left: 50px; /* Space for the button on the left */
+  text-align: left;
 }
 
-/* Style the search button */
+/* Style the search button (initially on the left) */
 #search-button {
   background-color: #75396c;
   color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
+  transition: all 0.5s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  border: none;
+  position: absolute;
+  top: 10px;
+  left: 0; /* Start on the left */
+  z-index: 2;
+}
+
+/* Move button to the right when input is focused/hovered */
+#search-input:focus ~ #search-button,
+.search-container:hover #search-button {
+  left: auto;
+  right: 0; /* Move to the right */
 }
 
 #search-button:hover {
   background-color: #5a2d54;
 }
 
-/* When the input is focused, expand it */
+/* Expand input when focused/hovered */
 .search-container:hover #search-input,
 #search-input:focus {
-  width: 200px;
-  padding: 5px 10px;
+  width: 42rem;
   opacity: 1;
   visibility: visible;
+  padding-right: 50px; /* Space for the button on the right */
 }
 
-/* Adjust the button position when the input is expanded */
-.search-container:hover #search-button,
-#search-input:focus + #search-button {
-  margin-left: 5px;
+/* Remove outline for cleaner look */
+#search-input:focus {
+  outline: none;
 }
 
 .post-form{
