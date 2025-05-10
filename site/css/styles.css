@@ -139,7 +139,6 @@ p {
 }
 
 .profile .small-container .col-4 {
-  border: solid 1px #000;
   flex-basis: 10%;
   padding: 10px;
   min-width: 200px;
