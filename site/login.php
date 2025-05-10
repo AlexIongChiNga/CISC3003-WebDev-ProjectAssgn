@@ -3,42 +3,34 @@ session_start();
 include("connection.php");
 include("function.php");
 
-if($_SERVER['REQUEST_METHOD'] == "POST")
-	{
-		//something was posted
-		$user_name = $_POST['username'];
-		$password = $_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //something was posted
+    $user_name = $_POST["username"];
+    $password = $_POST["password"];
 
-		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
-		{
-			//read from database
-			$query = "select * from users where username = '$user_name' limit 1";
-			$result = mysqli_query($con, $query);
-
-			if($result)
-			{
-				if($result && mysqli_num_rows($result) > 0)
-				{
-					$user_data = mysqli_fetch_assoc($result);
-          $hash = password_hash($user_data["password"], PASSWORD_DEFAULT);
-          
-          if (password_verify($password, $hash))
-					{
-						$_SESSION['user_id'] = $user_data['user_id'];
-						header("Location: home.php");
-						die;
-					} else {
+    if (empty($user_name) || empty($password) || is_numeric($user_name)) {
+        echo "<script>alert('Please enter valid username and password!');</script>";
+    } else {
+        //read from database
+        $query = "select * from users where username = '$user_name' limit 1";
+        $result = mysqli_query($con, $query);
+        if (!$result || mysql_num_rows($result) != 1) {
             echo "<script>alert('Wrong username or password!');</script>";
-          }
-				}
-			}
+        } else {
+            $user_data = mysqli_fetch_assoc($result);
+            if (!$user_data["is_verified"]) {
+                echo "<script>alert('You are not verified yet, please check your email!')</script>;";
+            } elseif (!password_verify($password, $hash)) {
+                echo "<script>alert('Wrong username or password!');</script>";
+            } else {
+                $_SESSION["user_id"] = $user_data["user_id"];
+                header("Location: home.php");
+                die();
+            }
+        }
+    }
 
-			echo "<script>alert('Wrong username or password!');</script>";
-		}else
-		{
-			echo "<script>alert('Please enter valid username and password!');</script>";
-		}
-	}
+}
 ?>
 <!doctype html>
 <html lang="en">
