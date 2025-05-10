@@ -9,16 +9,36 @@ $user_id = $user_data['user_id'];
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Get form data
     $name = $_POST['name'];
-    $image = $_POST['image'];
     $price = $_POST['price'];
     $description = $_POST['description'];
 
+
+    // Check if the file is an actual image
+    if (empty($_FILES["image"]["name"]) || !getimagesize($_FILES["image"]["tmp_name"])) {
+        die("File is not an image.");
+    }
+
     // Validate inputs
-    if (!empty($name) && !empty($image) && !empty($price) && !empty($description)) {
+    if (!empty($name) && !empty($price) && !empty($description)) {
+        // Get the next product ID for naming images
+        $query = "SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'products' AND table_schema = 'goods'";
+        $result = $con->query($query);
+        $row = $result->fetch_assoc();
+        $nextProductId = $row['AUTO_INCREMENT'];
+
+        $targetFile = __DIR__ . "images/" . basename($_FILES["image"]["name"]);
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+        // Assign new image name based on product ID
+        $targetFile = "images/product" . $nextProductId . "." . $imageFileType;
+
+        move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile);
+
         // Insert product into the database
         $query = "INSERT INTO products (user_id, name, image, price, description) VALUES (?, ?, ?, ?, ?)";
         $stmt = $con->prepare($query);
-        $stmt->bind_param("issds", $user_id, $name, $image, $price, $description);
+        $stmt->bind_param("issds", $user_id, $name, $targetFile, $price, $description);
+
 
         if ($stmt->execute()) {
             echo "<script>alert('Product added successfully!');</script>";
@@ -54,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div class="post-form">
         <div class="small-container">
         <h2>Post your Product</h2>
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
             <label for="name">Product Name:</label>
             <input type="text" id="name" name="name" placeholder="enter product name" class="box" required />
             <label for="image">Image:</label>
