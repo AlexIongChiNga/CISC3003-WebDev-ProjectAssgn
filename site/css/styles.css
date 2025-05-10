@@ -539,6 +539,59 @@ th:last-child {
   background: radial-gradient(#fff, #f3bdd7);
 }
 
+/* Search container styling */
+.search-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Initially hide the input box */
+#search-input {
+  width: 0;
+  padding: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: width 0.3s ease, padding 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Style the search button */
+#search-button {
+  background-color: #75396c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+#search-button:hover {
+  background-color: #5a2d54;
+}
+
+/* When the input is focused, expand it */
+.search-container:hover #search-input,
+#search-input:focus {
+  width: 200px;
+  padding: 5px 10px;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Adjust the button position when the input is expanded */
+.search-container:hover #search-button,
+#search-input:focus + #search-button {
+  margin-left: 5px;
+}
+
 .post-form{
   margin: 50px 0 50px;
 }
