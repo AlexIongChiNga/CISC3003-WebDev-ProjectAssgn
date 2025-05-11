@@ -105,26 +105,26 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `user_id`, `name`, `price`, `rating`, `image`, `description`) VALUES
-(1, 1, 'camera', 29.99, 0, 'images/product1.jpeg', 'This is the description for Product 1.'),
-(2, 2, 'switch', 49.99, 0, 'images/product2.jpeg', 'This is the description for Product 2.'),
-(3, 3, 'pen', 19.99, 0, 'images/product3.jpeg', 'This is the description for Product 3.'),
-(4, 4, 'clothe', 39.99, 0, 'images/product4.jpeg', 'This is the description for Product 4.'),
-(5, 5, 'shoes', 24.99, 0, 'images/product5.jpeg', 'This is the description for Product 5.'),
-(6, 6, 'Shirt', 29.99, 0, 'images/product6.jpeg', 'This is the description for Shirt.'),
-(7, 7, 'LED Light', 49.99, 0, 'images/product7.jpeg', 'This is the description for LED Light.'),
-(8, 8, 'Table Lamp', 19.99, 0, 'images/product8.jpeg', 'This is the description for Table Lamp.'),
-(9, 9, 'Sofa', 39.99, 0, 'images/product9.jpeg', 'This is the description for Sofa.'),
-(10, 10, 'Coffee Mug', 24.99, 0, 'images/product10.jpeg', 'This is the description for Coffee Mug.'),
-(11, 11, 'Backpack', 29.99, 0, 'images/product11.jpeg', 'This is the description for Backpack.'),
-(12, 12, 'Headphones', 49.99, 0, 'images/product12.jpeg', 'This is the description for Headphones.'),
-(13, 13, 'Notebook', 19.99, 0, 'images/product13.jpeg', 'This is the description for Notebook.'),
-(14, 14, 'Chair', 39.99, 0, 'images/product14.jpeg', 'This is the description for Chair.'),
-(15, 15, 'Water Bottle', 24.99, 0, 'images/product15.jpeg', 'This is the description for Water Bottle.'),
-(16, 16, 'Sneakers', 29.99, 0, 'images/product16.jpeg', 'This is the description for Sneakers.'),
-(17, 17, 'Smartwatch', 49.99, 0, 'images/product17.jpeg', 'This is the description for Smartwatch.'),
-(18, 18, 'Desk Organizer', 19.99, 0, 'images/product18.jpeg', 'This is the description for Desk Organizer.'),
-(19, 19, 'Bookshelf', 39.99, 0, 'images/product19.jpeg', 'This is the description for Bookshelf.'),
-(20, 20, 'Pillow', 24.99, 0, 'images/product20.jpeg', 'This is the description for Pillow.');
+(1, 0, 'camera', 29.99, 0, 'images/product1.jpeg', 'This is the description for Product 1.'),
+(2, 0, 'switch', 49.99, 0, 'images/product2.jpeg', 'This is the description for Product 2.'),
+(3, 0, 'pen', 19.99, 0, 'images/product3.jpeg', 'This is the description for Product 3.'),
+(4, 0, 'clothe', 39.99, 0, 'images/product4.jpeg', 'This is the description for Product 4.'),
+(5, 0, 'shoes', 24.99, 0, 'images/product5.jpeg', 'This is the description for Product 5.'),
+(6, 0, 'Shirt', 29.99, 0, 'images/product6.jpeg', 'This is the description for Shirt.'),
+(7, 0, 'LED Light', 49.99, 0, 'images/product7.jpeg', 'This is the description for LED Light.'),
+(8, 0, 'Table Lamp', 19.99, 0, 'images/product8.jpeg', 'This is the description for Table Lamp.'),
+(9, 0, 'Sofa', 39.99, 0, 'images/product9.jpeg', 'This is the description for Sofa.'),
+(10, 0, 'Coffee Mug', 24.99, 0, 'images/product10.jpeg', 'This is the description for Coffee Mug.'),
+(11, 0, 'Backpack', 29.99, 0, 'images/product11.jpeg', 'This is the description for Backpack.'),
+(12, 0, 'Headphones', 49.99, 0, 'images/product12.jpeg', 'This is the description for Headphones.'),
+(13, 0, 'Notebook', 19.99, 0, 'images/product13.jpeg', 'This is the description for Notebook.'),
+(14, 0, 'Chair', 39.99, 0, 'images/product14.jpeg', 'This is the description for Chair.'),
+(15, 0, 'Water Bottle', 24.99, 0, 'images/product15.jpeg', 'This is the description for Water Bottle.'),
+(16, 0, 'Sneakers', 29.99, 0, 'images/product16.jpeg', 'This is the description for Sneakers.'),
+(17, 0, 'Smartwatch', 49.99, 0, 'images/product17.jpeg', 'This is the description for Smartwatch.'),
+(18, 0, 'Desk Organizer', 19.99, 0, 'images/product18.jpeg', 'This is the description for Desk Organizer.'),
+(19, 0, 'Bookshelf', 39.99, 0, 'images/product19.jpeg', 'This is the description for Bookshelf.'),
+(20, 0, 'Pillow', 24.99, 0, 'images/product20.jpeg', 'This is the description for Pillow.');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
