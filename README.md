@@ -10,7 +10,7 @@ project_root/
 │   ├── include/     	# Shared components (footer, navbar)
 ├── sql/             	# Database schema
 ├── utils/           	# Utilities (diagrams, config files)
-├── vendor/          	# Composer-managed dependencies
+├── vendor/          	# Composer-managed dependencies (ignored by git)
 └── docs/            	# Documentation and guides
 ```
 
