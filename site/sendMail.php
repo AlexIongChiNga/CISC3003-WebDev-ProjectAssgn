@@ -127,4 +127,58 @@ body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;
         }
     }
 
+/**
+ * Sends a verification email after user registration.
+ *
+ * @param string $email The recipient's email address.
+ * @param int $user_id The unique user identifier.
+ * @param bool $debug debug information
+ * @return void
+ */
+    function sendForgetPasswordEmail($email, $user_id, $debug = false): void
+    {
+        $subject = "Change password";
+        $reset_link =
+            "http://localhost" .
+            substr(
+                realpath("forgetPassword.php"),
+                strlen($_SERVER["SERVER_NAME"])
+            ) .
+            "?id=" .
+            $user_id;
+
+        $body = '
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Password Reset Request</title>
+<style>
+body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+.container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 5px; text-align: center; }
+.button { display: inline-block; background-color: #dc3545; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; }
+.footer { margin-top: 20px; font-size: 12px; color: #777; }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Password Reset Request</h2>
+<p>We received a request to reset your password. Click the button below to proceed:</p>
+<a href="' . $reset_link . '" class="button">Reset Password</a>
+<p class="footer">If you did not request this reset, please ignore this email or contact support.</p>
+</div>
+</body>
+</html>
+        ';
+
+        $altBody = "We received a request to reset your password. Click this link to proceed: " . $reset_link;
+
+        sendMessage($email, $subject, $body, $altBody);
+        echo $reset_link . '<br>' . $email;
+        if ($debug) {
+        include "connection.php";
+        $con->query("DELETE FROM `users` WHERE username = 'asdf'");
+        die("Test ends here");
+        }
+    }
+
 }
