@@ -125,6 +125,9 @@ $result = $stmt->get_result();
           </tr>
         </table>
       </div>
+      <div class="checkout-btn">
+          <a href="payment.php" class="btn">Buy Now</a>
+      </div>
     </div>
 
     <?php include "include/footer.html"; ?>
