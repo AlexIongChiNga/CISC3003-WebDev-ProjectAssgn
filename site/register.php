@@ -5,7 +5,6 @@ include("connection.php");
 include("function.php");
 
 require("sendMail.php");
-use Mail;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $username = $con->real_escape_string($_POST['username']);
