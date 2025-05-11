@@ -145,7 +145,7 @@ body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;
             "http://localhost" .
             substr(
                 $path,
-                strlen($_SERVER["DOCUMENT_ROOT"])
+                strlen($_SERVER["SERVER_NAME"])
             ) .
             "?id=" .
             $user_id;
