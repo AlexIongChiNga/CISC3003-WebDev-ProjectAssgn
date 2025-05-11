@@ -8,7 +8,7 @@ project_root/
 │   ├── css/         	# Stylesheets
 │   ├── images/      	# Assets (logos, product images, etc.)
 │   ├── include/     	# Shared components (footer, navbar)
-│   ├── sql/         	# Database schema
+├── sql/             	# Database schema
 ├── utils/           	# Utilities (diagrams, config files)
 ├── vendor/          	# Composer-managed dependencies
 └── docs/            	# Documentation and guides
@@ -30,4 +30,13 @@ composer install
 ```
 
 ### Database
-1.
+Ensure the following in the phpMyAdmain
+```
+servername = "localhost";
+username = "root";
+password = "";
+```
+If not, please config accordingly in [[site/connection.php]]
+1. [[project_database.sql]] file is available for the initial setup for the database
+2. In phpMyAdmain, create a database called 'goods'
+3. Execute the [[project_database.sql]] script in the 'goods' database
