@@ -1,46 +1,51 @@
 @startuml
-' Define User class
-class User {
-    + userID: INT
-    + username: VARCHAR(50)
-    + password: VARCHAR(255)
-    + emailAddress: VARCHAR(100)
+class Users {
+    + user_id : int
+    + username : varchar(255)
+    + password : varchar(255)
+    + email : varchar(255)
+    + created_at : timestamp
+    + updated_at : timestamp
+    + is_verified : boolean
 }
 
-' Define Product class
-class Product {
-    + productID: INT
-    + description: TEXT
-    + price: DECIMAL(10, 2)
-    + postDate: TIMESTAMP
-    + quantity: INT
-    + sellerID: INT
+class Products {
+    + product_id : int
+    + user_id : int
+    + name : varchar(255)
+    + price : decimal(10,2)
+    + rating : int
+    + image : varchar(255)
+    + description : text
 }
 
-' Define Transaction class
-class Transaction {
-    + transactionID: INT
-    + buyerID: INT
-    + productID: INT
-    + totalFee: DECIMAL(10, 2)
-    + paymentMethod: VARCHAR(50)
-    + shipmentStatus: VARCHAR(50)
+class Cart {
+    + cart_id : int
+    + product_id : int
+    + user_id : int
+    + quantity : int
 }
 
-' Define Review class
-class Review {
-    + reviewID: INT
-    + productID: INT
-    + userID: INT
-    + rating: INT        ' Rating (e.g., 1-5 stars)
-    + comment: TEXT      ' Text review by the user
-    + reviewDate: TIMESTAMP
+class Orders {
+    + order_id : int
+    + user_id : int
+    + address : varchar(255)
+    + price : int
 }
 
-' Relationships
-User "1" --> "many" Product : sells
-Product "1" --> "many" Transaction : sold in
-Transaction --> User : buyerID
-User "1" --> "many" Review : writes
-Product "1" --> "many" Review : has
+class OrderDetail {
+    + order_detail_id : int
+    + product_id : int
+    + user_id : int
+    + quantity : int
+}
+
+Users "1" --> "many" Products : sells
+Users "1" --> "many" Cart : has
+Users "1" --> "many" Orders : places
+Users "1" --> "many" OrderDetail : relates to
+Products "1" --> "many" Cart : added to
+Products "1" --> "many" OrderDetail : included in
+Orders "1" --> "many" OrderDetail : contains
+
 @enduml
