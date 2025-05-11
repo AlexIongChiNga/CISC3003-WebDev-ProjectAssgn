@@ -1,16 +1,17 @@
 ## Project file tree
 ```
-my_project/
-├── index.php          # Main entry point of the website
-├── assets/            # Static assets like images, CSS, JS
-│   ├── css/           # Stylesheets
-│   ├── js/            # JavaScript files
-│   └── images/        # Images
-├── includes/          # Reusable PHP files (e.g., header.php, footer.php)
-├── pages/             # Additional pages (e.g., about.php, contact.php)
-├── config/            # Configuration files (e.g., database.php)
-├── database/          # Database-related scripts or backups
-└── utils/             # Misc items used in the project
+project_root/
+├── composer.json    	# Composer dependencies
+├── composer.lock    	# Dependency versions
+├── README.md        	# Project documentation
+├── site/            	# Main application files
+│   ├── css/         	# Stylesheets
+│   ├── images/      	# Assets (logos, product images, etc.)
+│   ├── include/     	# Shared components (footer, navbar)
+│   ├── sql/         	# Database schema
+├── utils/           	# Utilities (diagrams, config files)
+├── vendor/          	# Composer-managed dependencies
+└── docs/            	# Documentation and guides
 ```
 
 ## PowerPoint
@@ -18,3 +19,15 @@ my_project/
 
 ## Project Report
 [[]]
+
+## Install Instrctions
+### Configure composer
+1. Install composer
+2. Open terminal with this directory
+3. Enter the following in the terminal
+```
+composer install
+```
+
+### Database
+1.
