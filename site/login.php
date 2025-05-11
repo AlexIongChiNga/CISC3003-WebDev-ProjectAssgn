@@ -9,27 +9,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     if (empty($user_name) || empty($password) || is_numeric($user_name)) {
-        echo "<script>alert('Please enter valid username and password!');</script>";
-    } else {
-        //read from database
-        $query = "select * from users where username = '$user_name' limit 1";
-        $result = mysqli_query($con, $query);
-        if (!$result || mysql_num_rows($result) != 1) {
-            echo "<script>alert('Wrong username or password!');</script>";
-        } else {
-            $user_data = mysqli_fetch_assoc($result);
-            if (!$user_data["is_verified"]) {
-                echo "<script>alert('You are not verified yet, please check your email!')</script>;";
-            } elseif (!password_verify($password, $hash)) {
-                echo "<script>alert('Wrong username or password!');</script>";
-            } else {
-                $_SESSION["user_id"] = $user_data["user_id"];
-                header("Location: home.php");
-                die();
-            }
-        }
+        die("<script>alert('Please enter valid username and password!'); window.history.back();</script>");
     }
 
+    // Read from database
+    $query = "SELECT * FROM users WHERE username = '$user_name' LIMIT 1";
+    $result = mysqli_query($con, $query);
+
+    if (!$result || mysqli_num_rows($result) != 1) {
+        // wrong username
+        die("<script>alert('Wrong username or password!'); window.history.back();</script>");
+    }
+
+    $user_data = mysqli_fetch_assoc($result);
+
+    if (!$user_data["is_verified"]) {
+        die("<script>alert('You are not verified yet, please check your email!'); window.history.back();</script>");
+    }
+
+    if (!password_verify($password, $hash)) {
+        die("<script>alert('Wrong username or password!'); window.history.back();</script>");
+    }
+
+    $_SESSION["user_id"] = $user_data["user_id"];
+    header("Location: home.php");
+    die();
 }
 ?>
 <!doctype html>

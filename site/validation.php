@@ -15,6 +15,7 @@ if ($count == 0) {
     $updateQuery = $con->prepare("UPDATE users SET is_verified = 1 WHERE id = ?");
     $updateQuery->bind_param("i", $id);
     if ($updateQuery->execute()) {
+        echo "<scipt>Verification Completed! Welcome!</scipt>";
         $_SESSION["user_id"] = $id;
         header("Location: home.php");
         die();
