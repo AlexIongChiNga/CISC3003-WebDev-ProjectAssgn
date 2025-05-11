@@ -49,7 +49,7 @@ $order_result = $order_query->get_result();
             <?php else: ?>
                 <div class="orders-header">
                     <p>No orders found. You haven't placed any orders yet.</p>
-                    <a href="products.php" class="btn order-back-btn">Browse Products</a>
+                    <a href="shop.php" class="btn order-back-btn">Browse Products</a>
                 </div>
             <?php endif; ?>
         </div>
