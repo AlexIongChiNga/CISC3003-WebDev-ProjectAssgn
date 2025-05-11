@@ -18,7 +18,7 @@ project_root/
 [[https://uofmacau-my.sharepoint.com/:p:/g/personal/dc22767_um_edu_mo/ERHar6QEt4lJkzUG4NDcF_cBRDq6JCI6EK1OTgCa6q_fKw?e=aNy0zj]]
 
 ## Project Report
-[[]]
+[[https://docs.google.com/document/d/13BsSUzt_sA5Q_6zPs7awEs_btpeVIE1MiGgIjesKE1c/edit?tab=t.0]]
 
 ## Install Instrctions
 ### Configure composer
