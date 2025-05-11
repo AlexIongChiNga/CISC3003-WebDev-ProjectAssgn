@@ -89,6 +89,7 @@ class Mail
             ) .
             "?id=" .
             $user_id;
+        $address = str_replace('\\','/',$address);
 
         $body =
             '
@@ -136,7 +137,7 @@ body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;
  * @return void
  */
     function sendForgetPasswordEmail($email, $user_id, $debug = false): void
-    {   
+    {
         $path = realpath("forgetPassword.php");
         $path = str_replace('htdocs\\','/',$path);
         $path = str_replace('\\','/',$path);
