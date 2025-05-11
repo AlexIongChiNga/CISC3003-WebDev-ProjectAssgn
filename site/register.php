@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
             if ($con->query($query) === TRUE) {
                 $mail = new Mail();
                 $mail->sendRegisterEmail($email, $user_id);
-                echo "<script>alert('Registration successful!');</script>";
+                echo "<script>alert('Registration successful! Please check your email for verification');</script>";
                 header("Location: login.php");
                 exit;
             } else {
