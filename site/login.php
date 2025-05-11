@@ -26,7 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$user_data["is_verified"]) {
         die("<script>alert('You are not verified yet, please check your email!'); window.history.back();</script>");
     }
-
+    
+    $hash = password_hash($user_data["password"], PASSWORD_DEFAULT);
     if (!password_verify($password, $hash)) {
         die("<script>alert('Wrong username or password!'); window.history.back();</script>");
     }

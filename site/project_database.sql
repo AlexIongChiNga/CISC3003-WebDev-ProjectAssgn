@@ -37,6 +37,30 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `is_verified` boolean NOT NULL DEFAULT false
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `created_at`, `updated_at`, `is_verified`) VALUES
+(0, 'try', 'dc22785@um.edu.mo', '123456', '2025-04-21 06:13:20', '2025-04-21 06:13:20', '1'),
+(685355720, 'test', 'test@email.com', '123456', '2025-04-21 10:57:01', '2025-04-21 10:57:01', '1');
+COMMIT;
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -47,7 +71,7 @@ CREATE TABLE `products` (
   `price` decimal(10,2) NOT NULL,
   `rating` int(11) NOT NULL DEFAULT 0,
   `image` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL
+  `description` text DEFAULT NULL,
   FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -76,31 +100,6 @@ INSERT INTO `products` (`product_id`, `user_id`, `name`, `price`, `rating`, `ima
 (18, 18, 'Desk Organizer', 19.99, 0, 'images/product18.jpeg', 'This is the description for Desk Organizer.'),
 (19, 19, 'Bookshelf', 39.99, 0, 'images/product19.jpeg', 'This is the description for Bookshelf.'),
 (20, 20, 'Pillow', 24.99, 0, 'images/product20.jpeg', 'This is the description for Pillow.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-  `is_verified` boolean NOT NULL DEFAULT false
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(0, 'try', 'dc22785@um.edu.mo', '123456', '2025-04-21 06:13:20', '2025-04-21 06:13:20'),
-(685355720, 'test', 'test@email.com', '123456', '2025-04-21 10:57:01', '2025-04-21 10:57:01');
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

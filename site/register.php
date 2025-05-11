@@ -5,7 +5,6 @@ include("connection.php");
 include("function.php");
 
 require("sendMail.php");
-use Mail;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $username = $con->real_escape_string($_POST['username']);
@@ -28,8 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
             if ($con->query($query) === TRUE) {
                 $mail = new Mail();
                 $mail->sendRegisterEmail($email, $user_id);
-                echo "<script>alert('Registration successful! Please check your email for verification');</script>";
-                header("Location: login.php");
+                echo "<script>
+                  alert('Registration successful! Please check your email for verification');
+                  window.location.href = 'login.php';
+                </script>";
                 exit;
             } else {
                 echo "<script>alert('Error: " . $con->error . "');</script>";

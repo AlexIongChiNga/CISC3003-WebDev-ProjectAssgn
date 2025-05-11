@@ -4,7 +4,7 @@ include "connection.php";
 include "function.php";
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['forget'])) {
     require "sendMail.php";
     //something was posted
     $user_name = $_POST["username"];
@@ -28,6 +28,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $mail = new Mail();
     $mail->sendForgetPasswordEmail($email, $user_id);
+    echo "<script>
+      alert('We received a request to reset your password! Please check your email!');
+      window.location.href = 'login.php';
+    </script>";
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset'])) {
+    //something was posted
+    $password = $_POST["password"];
+    $user_id = intval($_GET["id"]);
+    // Update from database
+    $query = "UPDATE users SET password = ? WHERE user_id = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("si", $password, $user_id);
+    $stmt->execute();
+
+    echo "<script>
+      alert('Your password is reset!');
+      window.location.href = 'login.php';
+    </script>";
 }
 ?>
 <!doctype html>
@@ -71,7 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <form id="ForgetPassword" method="POST" action="">
                             <input type="password" name="password" placeholder="Enter new password" required />
                             <button type="submit" name="reset" class="btn">Reset Password</button>
-                        </form>
+                      </form>
+
                       <?php
                   } else {
                       die("<script>alert('Invalid user'); window.history.back();</script>");
@@ -81,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form id="ForgetPassword" method="POST" action="">
               <input type="text" name="username" placeholder="Username" required />
-              <button type="submit" name="reset" class="btn">Reset Credentials</button>
+              <button type="submit" name="forget" class="btn">Reset Credentials</button>
             </form>
             <?php
               } ?>

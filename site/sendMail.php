@@ -118,7 +118,7 @@ body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;
         $altBody =
             "Thank you for signing up! Click this link to verify your email: " .
             $address;
-        sendMessage($email, $subject, $body, $altBody);
+        $this->sendMessage($email, $subject, $body, $altBody);
         echo $address . '\n' . $email;
         if ($debug) {
         include "connection.php";
@@ -136,12 +136,15 @@ body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;
  * @return void
  */
     function sendForgetPasswordEmail($email, $user_id, $debug = false): void
-    {
+    {   
+        $path = realpath("forgetPassword.php");
+        $path = str_replace('htdocs\\','/',$path);
+        $path = str_replace('\\','/',$path);
         $subject = "Change password";
         $reset_link =
             "http://localhost" .
             substr(
-                realpath("forgetPassword.php"),
+                $path,
                 strlen($_SERVER["SERVER_NAME"])
             ) .
             "?id=" .
@@ -172,7 +175,7 @@ body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;
 
         $altBody = "We received a request to reset your password. Click this link to proceed: " . $reset_link;
 
-        sendMessage($email, $subject, $body, $altBody);
+        $this->sendMessage($email, $subject, $body, $altBody);
         echo $reset_link . '<br>' . $email;
         if ($debug) {
         include "connection.php";
