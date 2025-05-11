@@ -85,7 +85,7 @@ class Mail
             "http://localhost" .
             substr(
                 realpath("validation.php"),
-                strlen($_SERVER["SERVER_NAME"])
+                strlen($_SERVER["DOCUMENT_ROOT"])
             ) .
             "?id=" .
             $user_id;
@@ -145,7 +145,7 @@ body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;
             "http://localhost" .
             substr(
                 $path,
-                strlen($_SERVER["SERVER_NAME"])
+                strlen($_SERVER["DOCUMENT_ROOT"])
             ) .
             "?id=" .
             $user_id;

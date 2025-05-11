@@ -53,15 +53,6 @@ $total_pages = ceil($total_products / $limit);
               echo '<div class="col-4">';
               echo '<a href="productDetails.php?product_id=' . $row['product_id'] . '">';
               echo '<img src="' . $row['image'] . '" alt="' . $row['name'] . '" />';
-              echo '<div class="rating">';
-              for ($i = 0; $i < 5; $i++) {
-                  if ($i < $row['rating']) {
-                      echo '<i class="fa-solid fa-star"></i>';
-                  } else {
-                      echo '<i class="fa-regular fa-star"></i>';
-                  }
-              }
-              echo '</div>';
               echo '<h4>' . $row['name'] . '</h4>';
               echo '<p>$' . $row['price'] . '</p>';
               echo '</a>';

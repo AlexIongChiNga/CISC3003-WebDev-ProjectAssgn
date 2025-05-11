@@ -54,15 +54,6 @@ $more_result = $con->query($more_query);
               echo '<div class="col-4">';
               echo '<a href="productDetails.php?product_id=' . $product['product_id'] . '">'; // Add link to productDetails.php
               echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" />';
-              echo '<div class="rating">';
-              for ($i = 0; $i < 5; $i++) {
-                  if ($i < $product['rating']) {
-                      echo '<i class="fa-solid fa-star"></i>';
-                  } else {
-                      echo '<i class="fa-regular fa-star"></i>';
-                  }
-              }
-              echo '</div>';
               echo '<h4>' . htmlspecialchars($product['name']) . '</h4>';
               echo '<p>$' . htmlspecialchars($product['price']) . '</p>';
               echo '</a>'; // Close the link
@@ -84,15 +75,6 @@ $more_result = $con->query($more_query);
                 echo '<div class="col-4">';
                 echo '<a href="productDetails.php?product_id=' . $product['product_id'] . '">';
                 echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" />';
-                echo '<div class="rating">';
-                for ($i = 0; $i < 5; $i++) {
-                    if ($i < $product['rating']) {
-                        echo '<i class="fa-solid fa-star"></i>';
-                    } else {
-                        echo '<i class="fa-regular fa-star"></i>';
-                    }
-                }
-                echo '</div>';
                 echo '<h4>' . htmlspecialchars($product['name']) . '</h4>';
                 echo '<p>$' . htmlspecialchars($product['price']) . '</p>';
                 echo '</a>';
