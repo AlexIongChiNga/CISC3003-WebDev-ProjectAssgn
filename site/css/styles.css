@@ -598,7 +598,7 @@ th:last-child {
 /* Expand input when focused/hovered */
 .search-container:hover #search-input,
 #search-input:focus {
-  width: 38rem;
+  width: 34rem;
   opacity: 1;
   visibility: visible;
   padding-right: 50px; /* Space for the button on the right */
